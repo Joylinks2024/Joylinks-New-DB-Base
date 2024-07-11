@@ -8,4 +8,7 @@ from .models import Courses
 class JoyLinkUserAdmin(admin.ModelAdmin):
     list_display = ['title', 'is_active']
     list_editable = ['is_active']
-    ordering = ['-created_time']
+    ordering = ['-is_active', 'title']
+    search_fields = ['title']
+    # list_select_related = ['is_active', 'created_time', 'updated_time']
+    date_hierarchy = 'created_time'

@@ -20,6 +20,7 @@ class Bot_Users(models.Model):
     call_state = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
     off_state = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
     created_time = models.DateTimeField(auto_now_add=True)
+    updated_time = models.DateTimeField(auto_now=True, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_ban = models.BooleanField(default=False)
     is_admin = models.CharField(max_length=2, default="A")
