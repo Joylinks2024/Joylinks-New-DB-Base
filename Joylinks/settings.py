@@ -67,16 +67,6 @@ WSGI_APPLICATION = 'Joylinks.wsgi.application'
 
 # DATABASES
 
-# DATABASES   = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'Test',
-#         "HOST": "localhost",
-#         "PORT": '5432',
-#         "PASSWORD": "1234",
-#         "USER": "postgres"
-#     }
-# }
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -93,7 +83,6 @@ WSGI_APPLICATION = 'Joylinks.wsgi.application'
 DATABASES = {
     'default': dj_database_url.parse(env.str('DATABASE_URL'))
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
