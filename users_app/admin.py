@@ -11,9 +11,10 @@ class JoyLinkUserAdmin(admin.ModelAdmin):
     list_display = ['full_name', "is_admin", 'call_state', 'off_state', 'is_active', 'is_ban', 'tg_id']
     list_editable = ['is_admin', 'is_ban', "is_active", 'call_state', 'off_state']
     search_fields = ['tg_id', 'is_admin', 'first_name', 'last_name']
-    list_filter = ['created_time', 'is_active', 'is_ban', 'is_admin', 'region', 'district','course_id', 'call_state', 'off_state']
+    list_filter = ['created_time', 'is_active', 'is_ban', 'is_admin', 'region', 'district', 'course_id', 'call_state',
+                   'off_state']
     filter_horizontal = ['course_id']
-    ordering = ['-is_active', 'first_name', '-created_time']
+    ordering = ['-is_active', '-is_ban', 'first_name', '-created_time']
     date_hierarchy = 'created_time'
     # list_select_related = ['is_active', 'created_time', 'updated_time', 'region', 'district']
     list_per_page = 100
