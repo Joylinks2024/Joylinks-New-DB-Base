@@ -195,7 +195,7 @@ JAZZMIN_SETTINGS = {
     #############
 
     # Whether to display the side menu
-    "show_sidebar": True,
+    "show_sidebar": False,
 
     # Whether to aut expand the menu
     "navigation_expanded": False,
