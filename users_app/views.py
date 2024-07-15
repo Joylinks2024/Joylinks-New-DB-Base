@@ -13,7 +13,7 @@ from .serializers import UpdateRegionSerializer, UpdateDistrictSerializer, Updat
 @api_view(['GET', 'POST'])
 def User_List(request):
     if request.method == 'GET':
-        snippets = Bot_Users.objects.filter(is_active=True)
+        snippets = Bot_Users.objects
         serializer = UserSerializer(snippets, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
@@ -37,10 +37,10 @@ def User_List(request):
 #         return Response(ser_data)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['GET', 'PUT'])
 def User_Detail(request, tg_id):
     try:
-        user = get_object_or_404(Bot_Users, tg_id=tg_id, is_active=True)
+        user = get_object_or_404(Bot_Users, tg_id=tg_id)
     except Exception as e:
         return Response(data={"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
 
@@ -59,8 +59,7 @@ def User_Detail(request, tg_id):
 @api_view(['GET', 'PUT'])
 def Permission_Detail(request, tg_id):
     try:
-        user = get_object_or_404(Bot_Users, tg_id=tg_id, is_active=True)
-
+        user = get_object_or_404(Bot_Users, tg_id=tg_id)
     except Exception as e:
         return Response(data={"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
@@ -78,7 +77,7 @@ def Permission_Detail(request, tg_id):
 @api_view(['GET', 'PUT'])
 def User_Ban_Detail(request, tg_id):
     try:
-        user = get_object_or_404(Bot_Users, tg_id=tg_id, is_active=True)
+        user = get_object_or_404(Bot_Users, tg_id=tg_id)
     except Exception as e:
         return Response(data={"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
 
@@ -97,7 +96,7 @@ def User_Ban_Detail(request, tg_id):
 @api_view(['GET', 'PUT'])
 def User_Active_Detail(request, tg_id):
     try:
-        user = get_object_or_404(Bot_Users, tg_id=tg_id, is_active=True)
+        user = get_object_or_404(Bot_Users, tg_id=tg_id)
     except Exception as e:
         return Response(data={"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
 
@@ -116,7 +115,7 @@ def User_Active_Detail(request, tg_id):
 @api_view(['GET', 'PUT'])
 def Personal_Data_Detail(request, tg_id):
     try:
-        user = get_object_or_404(Bot_Users, tg_id=tg_id, is_active=True)
+        user = get_object_or_404(Bot_Users, tg_id=tg_id)
     except Exception as e:
         return Response(data={"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
 
@@ -135,7 +134,7 @@ def Personal_Data_Detail(request, tg_id):
 @api_view(['GET', 'PUT'])
 def First_Name_Detail(request, tg_id):
     try:
-        user = get_object_or_404(Bot_Users, tg_id=tg_id, is_active=True)
+        user = get_object_or_404(Bot_Users, tg_id=tg_id)
     except Exception as e:
         return Response(data={"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
 
@@ -154,7 +153,7 @@ def First_Name_Detail(request, tg_id):
 @api_view(['GET', 'PUT'])
 def Last_Name_Detail(request, tg_id):
     try:
-        user = get_object_or_404(Bot_Users, tg_id=tg_id, is_active=True)
+        user = get_object_or_404(Bot_Users, tg_id=tg_id)
     except Exception as e:
         return Response(data={"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
 
@@ -173,7 +172,7 @@ def Last_Name_Detail(request, tg_id):
 @api_view(['GET', 'PUT'])
 def Region_Detail(request, tg_id):
     try:
-        user = get_object_or_404(Bot_Users, tg_id=tg_id, is_active=True)
+        user = get_object_or_404(Bot_Users, tg_id=tg_id)
     except Exception as e:
         return Response(data={"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
@@ -191,7 +190,7 @@ def Region_Detail(request, tg_id):
 @api_view(['GET', 'PUT'])
 def District_Detail(request, tg_id):
     try:
-        user = get_object_or_404(Bot_Users, tg_id=tg_id, is_active=True)
+        user = get_object_or_404(Bot_Users, tg_id=tg_id)
 
     except Exception as e:
         return Response(data={"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
@@ -211,7 +210,7 @@ def District_Detail(request, tg_id):
 @api_view(['GET', 'PUT'])
 def Phone_Number_Detail(request, tg_id):
     try:
-        user = get_object_or_404(Bot_Users, tg_id=tg_id, is_active=True)
+        user = get_object_or_404(Bot_Users, tg_id=tg_id)
     except Exception as e:
         return Response(data={"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
 
@@ -231,12 +230,12 @@ def Phone_Number_Detail(request, tg_id):
 def Admin_Count_List(request):
     if request.method == 'GET':
         if request.data:
-            snippets = Bot_Users.objects.filter(is_active=True, is_admin=request.data['is_admin'])
+            snippets = Bot_Users.objects.filter(is_admin=request.data['is_admin'])
             serializer = UserSerializer(snippets, many=True)
             return Response({"count": len(serializer.data),
                              "data": serializer.data})
         else:
-            snippets = Bot_Users.objects.filter(is_active=True, is_admin="A")
+            snippets = Bot_Users.objects.filter(is_admin="A")
             serializer = UserSerializer(snippets, many=True)
             return Response({"count": len(serializer.data),
                              "data": serializer.data})
@@ -251,7 +250,7 @@ def Admin_Detail(request, tg_id):
              else: HTTP_404_NOT_FOUND or HTTP_400_BAD_REQUEST
     """
     try:
-        user = get_object_or_404(Bot_Users, tg_id=tg_id, is_active=True)
+        user = get_object_or_404(Bot_Users, tg_id=tg_id)
     except Exception as e:
         return Response(data={"error": str(e)}, status=status.HTTP_404_NOT_FOUND)
 
