@@ -298,7 +298,7 @@ def Users_Count_List(request):
                           False: len(serializer_false.data)}, status=status.HTTP_200_OK)
 
 
-@api_view(['GET', 'PUT'])
+@api_view(['PUT'])
 def Register_User_Detail(request, tg_id):
     try:
         user = get_object_or_404(Bot_Users, tg_id=tg_id)

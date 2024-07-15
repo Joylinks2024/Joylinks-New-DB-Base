@@ -23,7 +23,7 @@ class Bot_Users(models.Model):
     updated_time = models.DateTimeField(auto_now=True, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_ban = models.BooleanField(default=False)
-    is_admin = models.CharField(max_length=2, default="A")
+    is_admin = models.CharField(max_length=5, default="U")
 
     objects = models.Manager()
 
